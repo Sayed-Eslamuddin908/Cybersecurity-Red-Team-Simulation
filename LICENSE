@@ -1,0 +1,61 @@
+# Cybersecurity Red Team Simulation — Proprietary License
+
+Copyright (c) 2026 Sayed Eslamuddin
+
+All rights reserved.
+
+## 1. Ownership
+
+The Cybersecurity Red Team Simulation software, source code, documentation, design, and associated materials are the property of Sayed Eslamuddin unless otherwise stated.
+
+## 2. Restrictions
+
+Without prior written permission from the copyright holder, no person or organization may:
+
+- Copy or reproduce this software for redistribution
+- Modify, alter, or create derivative works
+- Sell, resell, sublicense, or commercially distribute the software
+- Publish modified versions of the software
+- Repackage or redistribute the software as another product
+- Use the source code to create a competing product
+- Remove copyright or author attribution
+- Claim the software or derivative work as their own
+- Upload copies or modified versions to another repository or platform
+
+## 3. Personal and Educational Use
+
+Permission is granted to download, install, and use the software for:
+
+- Personal cybersecurity education
+- Academic learning
+- Authorized security research
+- Authorized penetration-testing laboratories
+- Isolated Red Team/Blue Team training environments
+
+This permission does not grant permission to redistribute, modify, sell, or commercially exploit the software.
+
+## 4. Commercial Use
+
+Commercial use requires explicit written permission from the copyright holder.
+
+To request commercial or other usage rights, contact the copyright holder through the official project repository.
+
+## 5. Security and Authorized Testing
+
+This software is intended for authorized cybersecurity testing and controlled laboratory environments.
+
+Users are solely responsible for ensuring that their use of the software complies with applicable laws, regulations, organizational policies, and authorization requirements.
+
+The author does not authorize unauthorized access, exploitation, persistence, credential theft, data theft, disruption, or other activity against systems without permission.
+
+## 6. No Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF, OR INABILITY TO USE, THE SOFTWARE.
+
+## 7. Permission Requests
+
+Requests for permission to modify, redistribute, publish, sublicense, or commercially use the software must be made directly to the copyright holder.
+
+Copyright © 2026 Sayed Eslamuddin. All rights reserved.
